@@ -1,13 +1,7 @@
 defmodule Problem4 do
-  def find(n, m, count\\0) do
-    list = 0..count
-      |> Enum.map(&((n-&1)*(m-count+&1)))
-      |> Enum.filter(&isPalindrome/1)
-    if Enum.empty?(list) do
-      find(n, m, count+1)
-    else
-      Enum.max list
-    end
+  def find(n) do
+    (for i <- 100..n, j <- 100..i, do: i*j)
+    |> Enum.filter(&isPalindrome/1) |> Enum.max
   end
 
   def isPalindrome(num) do
@@ -16,5 +10,5 @@ defmodule Problem4 do
   end
 end
 
-Problem4.find(999,999) |> IO.puts
+Problem4.find(999) |> IO.puts
 
